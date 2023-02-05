@@ -22,6 +22,7 @@ export const AppointmentsPage = (props) => {
       <section>
         <h2>Add Appointment</h2>
         <AppointmentForm
+          contacts={props.contacts}
           title={title}
           setTitle={setTitle}
           contact={contact}
@@ -35,7 +36,7 @@ export const AppointmentsPage = (props) => {
       <hr />
       <section>
         <h2>Appointments</h2>
-        <TileList appointments={this.props.appointments}/>
+        <TileList items={props.appointments}/>
       </section>
     </div>
   );

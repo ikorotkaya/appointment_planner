@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ContactForm } from "../../components/contactForm/ContactForm";
+import {TileList} from "../../components/tileList/TileList"
 
 export const ContactsPage = (props) => {
   const [name, setName] = useState("");
@@ -17,9 +18,10 @@ export const ContactsPage = (props) => {
     if (props.contacts.find(contact => contact.name === name)) {
       alert("name exists")
     } else {
-      props.addNewContact(name, phone, email);
+      const formData = new FormData(e.target);
+      props.addNewContact(formData.get('name'), formData.get('phone'), formData.get('email'));
       setName("");
-      setPhone("");
+      setPhone("+49");
       setEmail("");
     }
   };
@@ -39,6 +41,7 @@ export const ContactsPage = (props) => {
       <hr />
       <section>
         <h2>Contacts</h2>
+        <TileList items={props.contacts}/>
       </section>
     </div>
   );

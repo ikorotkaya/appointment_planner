@@ -16,6 +16,7 @@ export const ContactForm = ({
         value={name}
         onChange={(e) => setName(e.target.value)}
         id="name"
+        name="name"
         required />
       <input
         type="tel"
@@ -23,16 +24,17 @@ export const ContactForm = ({
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
         id="phone"
+        name="phone"
         required />
       <input
         type="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         id="email"
+        name="email"
         required />
       <button 
-        type="submit" 
-        onChange={handleSubmit}>Submit</button>
+        type="submit">Submit</button>
     </form>
   );
 };

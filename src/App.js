@@ -9,11 +9,13 @@ function App() {
   const [appointments, setAppointments] = useState([]);
 
   const addNewContact = (name, phone, email) => {
-    setContacts([...contacts, {name, phone, email}]);
+    const newContact = {name, phone, email};
+    console.log(newContact)
+    setContacts(() => contacts.concat(newContact));
   }
 
   const addNewAppointment = (title, contact, date, time) => {
-    setAppointments([...appointments, {title, contact, date, time}]);
+    setAppointments([...appointments, [title, contact, date, time]]);
   }
 
   const ROUTES = {
@@ -37,11 +39,9 @@ function App() {
             <Redirect to={ROUTES.CONTACTS} />
           </Route>
           <Route path={ROUTES.CONTACTS}>
-             {/* Add props to ContactsPage */}
             <ContactsPage contacts={contacts} addNewContact={addNewContact}/>
           </Route>
           <Route path={ROUTES.APPOINTMENTS}>
-            {/* Add props to AppointmentsPage */}
             <AppointmentsPage appointments={appointments} contacts={contacts} addNewAppointment={addNewAppointment}/>
           </Route>
         </Switch>
