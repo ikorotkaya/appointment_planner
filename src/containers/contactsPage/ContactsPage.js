@@ -3,7 +3,7 @@ import { ContactForm } from "../../components/contactForm/ContactForm";
 
 export const ContactsPage = (props) => {
   const [inputName, setInputName] = useState("");
-  const [inputPhone, setInputPhone] = useState("");
+  const [inputPhone, setInputPhone] = useState("+49");
   const [inputEmail, setInputEmail] = useState("");
 
   useEffect(() => {
