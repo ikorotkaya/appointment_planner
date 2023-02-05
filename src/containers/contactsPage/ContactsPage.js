@@ -2,25 +2,25 @@ import React, { useState, useEffect } from "react";
 import { ContactForm } from "../../components/contactForm/ContactForm";
 
 export const ContactsPage = (props) => {
-  const [inputName, setInputName] = useState("");
-  const [inputPhone, setInputPhone] = useState("+49");
-  const [inputEmail, setInputEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("+49");
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
-    if (props.contacts.find(contact => contact.name === inputName)) {
+    if (props.contacts.find(contact => contact.name === name)) {
       alert("name exists")
     }
-  }, [inputName, props.contacts])
+  }, [name, props.contacts])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (props.contacts.find(contact => contact.name === inputName)) {
+    if (props.contacts.find(contact => contact.name === name)) {
       alert("name exists")
     } else {
-      props.addNewContact(inputName, inputPhone, inputEmail);
-      setInputName("");
-      setInputPhone("");
-      setInputEmail("");
+      props.addNewContact(name, phone, email);
+      setName("");
+      setPhone("");
+      setEmail("");
     }
   };
 
@@ -28,12 +28,12 @@ export const ContactsPage = (props) => {
     <div>
       <section>
         <h2>Add Contact</h2>
-        <ContactForm name={inputName}
-          setName={setInputName}
-          phone={inputPhone}
-          setPhone={setInputPhone}
-          email={inputEmail}
-          setEmail={setInputEmail}
+        <ContactForm name={name}
+          setName={setName}
+          phone={phone}
+          setPhone={setPhone}
+          email={email}
+          setEmail={setEmail}
           handleSubmit={handleSubmit} />
       </section>
       <hr />
