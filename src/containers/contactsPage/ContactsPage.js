@@ -1,28 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { ContactForm } from "../../components/contactForm/ContactForm";
 
-export const ContactsPage = () => {
-  /*
-  Define state variables for 
-  contact info and duplicate check
-  */
+export const ContactsPage = (props) => {
+  const [inputName, setInputName] = useState("");
+  const [inputPhone, setInputPhone] = useState("");
+  const [inputEmail, setInputEmail] = useState("");
+
+  useEffect(() => {
+    if (props.contacts.find(contact => contact.name === inputName)) {
+      alert("name exists")
+    }
+  }, [inputName, props.contacts])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /*
-    Add contact info and clear data
-    if the contact name is not a duplicate
-    */
+    if (props.contacts.find(contact => contact.name === inputName)) {
+      alert("name exists")
+    } else {
+      props.addNewContact(inputName, inputPhone, inputEmail);
+      setInputName("");
+      setInputPhone("");
+      setInputEmail("");
+    }
   };
-
-  /*
-  Using hooks, check for contact name in the 
-  contacts array variable in props
-  */
 
   return (
     <div>
       <section>
-        <h2>Add Contact</h2> 
+        <h2>Add Contact</h2>
+        <ContactForm name={inputName}
+          setName={setInputName}
+          phone={inputPhone}
+          setPhone={setInputPhone}
+          email={inputEmail}
+          setEmail={setInputEmail}
+          handleSubmit={handleSubmit} />
       </section>
       <hr />
       <section>
